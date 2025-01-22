@@ -49,7 +49,7 @@ public class BackgroundManager
             // 화면에서 사라지면 위로 올리기
             if (vector3.y <= -1.5 * BackgroundHeight)
             {
-                vector3.y += + BackgroundHeight * _backgrounds.Count;
+                vector3.y += BackgroundHeight * _backgrounds.Count;
                 background.transform.position = vector3;
             }
         }
