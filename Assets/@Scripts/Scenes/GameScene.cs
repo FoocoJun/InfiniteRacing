@@ -45,7 +45,8 @@ public class GameScene : BaseScene
     }
 
     Coroutine playingCoroutine;
-    void StartGame()
+
+    public void StartGame()
     {
         Managers.Game.IsPlaying = true;
         playingCoroutine = StartCoroutine(PlayGame());
