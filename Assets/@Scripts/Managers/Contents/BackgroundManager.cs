@@ -18,6 +18,8 @@ public class BackgroundManager
 
     public void InitBackgrounds()
     {
+        Clear();
+        
         if (BackgroundRoot == null)
         {
             BackgroundRoot = new GameObject("@BackgroundRoot");

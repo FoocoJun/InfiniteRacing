@@ -9,7 +9,8 @@ public class CarGasManager
     
     public void InitCarGas()
     {
-       
+        Clear();
+        
         for (int i = 0; i < 10; i++)
         {
             var carGas = Managers.Resource.Instantiate("CarGas", null, true);
@@ -56,5 +57,11 @@ public class CarGasManager
     {
         var randomX = Random.Range(-1, 2);
         return new Vector3(randomX * 2, 0, 0);
+    }
+    
+    public void Clear()
+    {
+        _carGasList.ForEach(Object.Destroy);
+        _carGasList.Clear();
     }
 }
