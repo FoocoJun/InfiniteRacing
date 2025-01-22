@@ -94,6 +94,8 @@ public class UI_GameScene : UI_Scene
 
     void RefreshCurrentRemainGasSlider()
     {
+        // TODO: 수치에 따라 색 바꾸기
+        
         // slider value needs 0 to 1, but value 0 to 100
         GetSlider((int)Sliders.CurrentRemainGasSlider).value = Managers.Game.CurrentRemainGas * 0.01f;
     }
