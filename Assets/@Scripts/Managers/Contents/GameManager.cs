@@ -84,16 +84,16 @@ public class GameManager
 			return;
 		
 		// 저장된 데이터 없을 시 초기 데이터 선언 TODO: 팩토리 패턴 쓰면 어떨까
+		// player
 		{
-			SaveData.LastSaveDate = "";
-
-			SaveData.BackgroundSpeedMultiplier = 1.0f;
-
-			SaveData.CurrentRemainGas = 100f;
-		    
-			SaveData.PlayerPosition = Vector3.zero;
-			
-			SaveData.CurrentScore = 0;
+			_startPosition = new Vector3(0, -2, 0);
+			CurrentRemainGas = 100f;
+			CurrentScore = 0;
+		}
+		
+		// background
+		{
+			Managers.Background.BackgroundSpeedMultiplier = 1.0f;
 		}
 	}
 
