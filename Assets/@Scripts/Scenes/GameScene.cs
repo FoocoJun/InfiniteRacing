@@ -22,7 +22,7 @@ public class GameScene : BaseScene
         Managers.UI.ShowBaseUI<UI_SideMoveButton>();
 
         // 플레이어 트럭 생성
-        var player = Managers.Resource.Instantiate("FireTruck");
+        var player = Managers.Game.SpawnFireTruck();
 
         return true;
     }

@@ -8,10 +8,17 @@ using static Define;
 [Serializable]
 public class GameSaveData
 {
-    public string LastSaveDate = "";
+    public string LastSaveDate;
 
-    public float BackgroundSpeedMultiplier = 1.0f;
-    // 그 외 저장 값   
+    public float BackgroundSpeedMultiplier;
+
+    public float CurrentRemainGas;
+    
+    public Vector3 PlayerPosition;
+    
+    public int CurrentScore;
+    
+    // TODO: 기름통의 위치를 굳이 저장해야할까?
 }
 
 public class GameManager
@@ -23,9 +30,41 @@ public class GameManager
     #endregion
     
     #region Player
+    private FireTruck _player;
+    private Vector3 _startPosition;
+    private float _currentRemainGas;
+    private int _currentScore;
 
-    private Define.EMoveButtonState _moveButtonState;
-    public Define.EMoveButtonState MoveButtonState
+    public float CurrentRemainGas
+    {
+	    get => _currentRemainGas;
+	    private set
+	    {
+			_currentRemainGas = value;
+		    OnCurrentRemainGasChanged?.Invoke();
+	    }
+    }
+
+    public int CurrentScore
+    {
+	    get => _currentScore;
+	    set
+	    {
+			_currentScore = value;
+		    OnCurrentScoreChanged?.Invoke();
+	    }
+    }
+
+    public FireTruck SpawnFireTruck()
+    {
+	    GameObject player = Managers.Resource.Instantiate("FireTruck");
+	    player.transform.position = _startPosition;
+	    _player = player.GetOrAddComponent<FireTruck>();
+	    return _player;
+    }
+    
+    private EMoveButtonState _moveButtonState;
+    public EMoveButtonState MoveButtonState
     {
 	    get { return _moveButtonState; }
 	    set
@@ -34,7 +73,6 @@ public class GameManager
 		    OnMoveButtonStateChanged?.Invoke(_moveButtonState);
 	    }
     }
-    
     #endregion
     
     #region Save & Load
@@ -45,17 +83,36 @@ public class GameManager
 		if (File.Exists(Path))
 			return;
 		
-		// 저장된 데이터 없을 시 초기 데이터 선언
+		// 저장된 데이터 없을 시 초기 데이터 선언 TODO: 팩토리 패턴 쓰면 어떨까
 		{
+			SaveData.LastSaveDate = "";
+
+			SaveData.BackgroundSpeedMultiplier = 1.0f;
+
+			SaveData.CurrentRemainGas = 100f;
+		    
+			SaveData.PlayerPosition = Vector3.zero;
 			
+			SaveData.CurrentScore = 0;
 		}
 	}
 
 	public void SaveGame()
 	{
 		// 저장이 필요한 데이터 SaveData에 재할당
+		// player
 		{
-			
+			if (_player != null)
+			{
+				SaveData.PlayerPosition = _player.transform.position;
+			}
+			SaveData.CurrentRemainGas = CurrentRemainGas;
+			SaveData.CurrentScore = CurrentScore;
+		}
+
+		// background
+		{
+			SaveData.BackgroundSpeedMultiplier = Managers.Background.BackgroundSpeedMultiplier;
 		}
         
         // common
@@ -86,10 +143,18 @@ public class GameManager
 
 		// TODO: 저장 데이터 형태가 기존과 맞지 않으면 어떡하지? 1.0.0 이후 고민하기. 세이브 데이터에 저장 버전을 담아도 될듯.
 		// 불러올 데이터 SaveData에서 추출 및 할당
+		// player
 		{
-
+			_startPosition = SaveData.PlayerPosition;
+			CurrentRemainGas = SaveData.CurrentRemainGas;
+			CurrentScore = SaveData.CurrentScore;
 		}
-
+		
+		// background
+		{
+			Managers.Background.BackgroundSpeedMultiplier = SaveData.BackgroundSpeedMultiplier;
+		}
+		
 		Debug.Log($"Save Game Loaded : {Path}");
 		return true;
 	}
@@ -103,5 +168,7 @@ public class GameManager
     
     #region Action
     public event Action<Define.EMoveButtonState> OnMoveButtonStateChanged;
+    public event Action OnCurrentRemainGasChanged;
+    public event Action OnCurrentScoreChanged;
     #endregion
 }

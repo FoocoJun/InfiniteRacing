@@ -7,7 +7,9 @@ public class BackgroundManager
 {
     List<GameObject> _backgrounds = new List<GameObject>();
     GameObject BackgroundRoot;
-    
+
+    public float BackgroundSpeedMultiplier { get; set; } = 1.0f;
+
     public void InitBackgrounds()
     {
         if (BackgroundRoot == null)
@@ -32,7 +34,7 @@ public class BackgroundManager
     {
         foreach (GameObject background in _backgrounds)
         {
-            background.transform.position += Vector3.down * (BackgroundMoveSpeed * Time.deltaTime);
+            background.transform.position += Vector3.down * (BackgroundMoveSpeed * BackgroundSpeedMultiplier * Time.deltaTime);
         }
 
         CheckBackgroundPosition();
