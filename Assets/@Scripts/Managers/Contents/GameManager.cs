@@ -87,8 +87,8 @@ public class GameManager
 		// player
 		{
 			_startPosition = new Vector3(0, -2, 0);
-			CurrentRemainGas = 100f;
-			CurrentScore = 0;
+			_currentRemainGas = 100f;
+			_currentScore = 0;
 		}
 		
 		// background

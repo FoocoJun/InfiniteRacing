@@ -10,6 +10,12 @@ public class UI_GameScene : UI_Scene
     enum Texts
     {
         CurrentFPSText,
+        ScoreValueText,
+    }
+
+    enum Sliders
+    {
+        CurrentRemainGasSlider,
     }
     
     public override bool Init()
@@ -18,18 +24,27 @@ public class UI_GameScene : UI_Scene
             return false;
         
         BindTexts(typeof(Texts));
+        BindSliders(typeof(Sliders));
         
+        Refresh();
         return true;
     }
     
-    private float _elapsedTime = 0.0f;
-    private readonly float _updateInterval = 1.0f;
-
     private void Update()
     {
         RefreshCurrentFPSText();
     }
 
+    private void Refresh()
+    {
+        RefreshScoreValue();
+        RefreshCurrentRemainGasSlider();
+        RefreshCurrentFPSText();
+    }
+    
+    private float _elapsedTime = 0.0f;
+    private readonly float _updateInterval = 1.0f;
+    
     void RefreshCurrentFPSText()
     {
         _elapsedTime += Time.deltaTime;
@@ -43,5 +58,16 @@ public class UI_GameScene : UI_Scene
 
             _elapsedTime = 0;
         }
+    }
+
+    void RefreshScoreValue()
+    {
+        GetText((int)Texts.ScoreValueText).text = Managers.Game.CurrentScore.ToString();
+    }
+
+    void RefreshCurrentRemainGasSlider()
+    {
+        // slider value needs 0 to 1, but value 0 to 100
+        GetSlider((int)Sliders.CurrentRemainGasSlider).value = Managers.Game.CurrentRemainGas * 0.01f;
     }
 }
