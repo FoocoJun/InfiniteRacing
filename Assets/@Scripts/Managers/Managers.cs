@@ -11,8 +11,10 @@ public class Managers : MonoBehaviour
 
 	#region Contents
 	private GameManager _game = new GameManager();
+	private BackgroundManager _background = new BackgroundManager();
 	
 	public static GameManager Game { get { return Instance?._game; } }
+	public static BackgroundManager Background { get { return Instance?._background; } }
 	#endregion
 	
 	#region Core

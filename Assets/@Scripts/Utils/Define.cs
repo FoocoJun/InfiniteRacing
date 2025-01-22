@@ -18,4 +18,7 @@ public static class Define
         PointerUp,
         Drag,
     }
+    
+    public const int BackgroundHeight = 10;
+    public const int BackgroundMoveSpeed = 3;
 }

@@ -9,8 +9,9 @@ using static Define;
 public class GameSaveData
 {
     public string LastSaveDate = "";
-    
-	// 그 외 저장 값   
+
+    public float BackgroundSpeedMultiplier = 1.0f;
+    // 그 외 저장 값   
 }
 
 public class GameManager
