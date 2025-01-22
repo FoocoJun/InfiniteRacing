@@ -4,7 +4,7 @@ using System.IO;
 using UnityEngine;
 using System.Linq;
 using Unity.Plastic.Newtonsoft.Json;
-using Data;
+// using Data;
 using System;
 using System.Reflection;
 using System.Collections;
@@ -32,8 +32,6 @@ public class DataTransformer : EditorWindow
 	[MenuItem("Tools/ParseExcel %#K")]
 	public static void ParseExcelDataToJson()
 	{
-		ParseExcelDataToJson<TextDataLoader, TextData>("Text");
-
 		Debug.Log("DataTransformer Completed");
 	}
 
