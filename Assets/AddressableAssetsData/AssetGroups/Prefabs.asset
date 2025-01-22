@@ -12,11 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
   m_Name: Prefabs
   m_EditorClassIdentifier: 
-  m_GroupName: Packed Assets
+  m_GroupName: Prefabs
   m_Data:
     m_SerializedData: []
   m_GUID: c9949030f090f924d99ae78dd3d2b89d
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 6640b6575e509824090c31a77a71f88c
+    m_Address: CarGas
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bdeed4d04d755a34fac009bad5cf654e
+    m_Address: Background
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ec1a1a49a8422da41a0cdf79ee33064c
+    m_Address: FireTruck
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: b6b7c7a43caad894c9b8576516ecddac, type: 2}
   m_SchemaSet:
