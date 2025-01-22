@@ -52,8 +52,6 @@ public class UI_TitleScene : UI_Scene
 
             if (count == totalCount)
             {
-                Managers.Data.Init();
-                
                 // 세이브 데이터 불러오기 등
                 if (Managers.Game.LoadGame() == false)
                 {

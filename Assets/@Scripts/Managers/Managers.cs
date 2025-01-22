@@ -18,13 +18,11 @@ public class Managers : MonoBehaviour
 	#endregion
 	
 	#region Core
-	private DataManager _data = new DataManager();
 	private SceneManagerEx _scene = new SceneManagerEx();
 	private PoolManager _pool = new PoolManager();
 	private ResourceManager _resource = new ResourceManager();
 	private UIManager _ui = new UIManager();
 	
-	public static DataManager Data { get { return Instance?._data; } }
 	public static SceneManagerEx Scene { get { return Instance?._scene; } }
 	public static PoolManager Pool { get { return Instance?._pool; } }
 	public static ResourceManager Resource { get { return Instance?._resource; } }
