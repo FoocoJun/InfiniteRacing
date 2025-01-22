@@ -31,7 +31,6 @@ public class GameManager
 	    set
 	    {
 		    _moveButtonState = value;
-		    Debug.Log("Changed to" + value);
 		    OnMoveButtonStateChanged?.Invoke(_moveButtonState);
 	    }
     }
