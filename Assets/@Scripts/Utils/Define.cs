@@ -19,8 +19,10 @@ public static class Define
         Drag,
     }
     
-    public const int BackgroundHeight = 10;
-    public const int BackgroundMoveSpeed = 3;
+    public static readonly int BackgroundHeight = 10;
+    public static readonly int BackgroundMoveSpeed = 3;
+
+    public static readonly float MaximumXPosition = 3.5f;
 
     public enum EMoveButtonState
     {

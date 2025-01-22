@@ -48,14 +48,14 @@ public class FireTruck : InitBase
             if (MoveState == EFireTruckMoveState.Left)
             {
                 var vector3 = transform.position;
-                vector3.x -= _moveSpeed * Time.deltaTime;
+                vector3.x = Mathf.Clamp(vector3.x - (_moveSpeed * Time.deltaTime), MaximumXPosition * -1, MaximumXPosition);
                 transform.position = vector3;
             }
 
             if (MoveState == EFireTruckMoveState.Right)
             {
                 var vector3 = transform.position;
-                vector3.x += _moveSpeed * Time.deltaTime;
+                vector3.x = Mathf.Clamp(vector3.x + (_moveSpeed * Time.deltaTime), MaximumXPosition * -1, MaximumXPosition);
                 transform.position = vector3;
             }
             
