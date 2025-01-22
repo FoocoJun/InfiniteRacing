@@ -25,6 +25,12 @@ public class UI_GameScene : UI_Scene
         
         BindTexts(typeof(Texts));
         BindSliders(typeof(Sliders));
+
+        Managers.Game.OnCurrentScoreChanged -= HandleOnCurrentScoreChanged;
+        Managers.Game.OnCurrentScoreChanged += HandleOnCurrentScoreChanged;
+
+        Managers.Game.OnCurrentRemainGasChanged -= HandleOnCurrentRemainGasSliderChanged;
+        Managers.Game.OnCurrentRemainGasChanged += HandleOnCurrentRemainGasSliderChanged;
         
         Refresh();
         return true;
@@ -37,7 +43,7 @@ public class UI_GameScene : UI_Scene
 
     private void Refresh()
     {
-        RefreshScoreValue();
+        RefreshCurrentScoreValue();
         RefreshCurrentRemainGasSlider();
         RefreshCurrentFPSText();
     }
@@ -60,7 +66,7 @@ public class UI_GameScene : UI_Scene
         }
     }
 
-    void RefreshScoreValue()
+    void RefreshCurrentScoreValue()
     {
         GetText((int)Texts.ScoreValueText).text = Managers.Game.CurrentScore.ToString();
     }
@@ -69,5 +75,15 @@ public class UI_GameScene : UI_Scene
     {
         // slider value needs 0 to 1, but value 0 to 100
         GetSlider((int)Sliders.CurrentRemainGasSlider).value = Managers.Game.CurrentRemainGas * 0.01f;
+    }
+
+    void HandleOnCurrentScoreChanged()
+    {
+        RefreshCurrentScoreValue();
+    }
+
+    void HandleOnCurrentRemainGasSliderChanged()
+    {
+        RefreshCurrentRemainGasSlider();
     }
 }
