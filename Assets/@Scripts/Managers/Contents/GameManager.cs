@@ -40,7 +40,7 @@ public class GameManager
 	    get => _currentRemainGas;
 	    set
 	    {
-			_currentRemainGas = value;
+			_currentRemainGas = Mathf.Clamp(value, 0, 100);
 		    OnCurrentRemainGasChanged?.Invoke();
 	    }
     }
