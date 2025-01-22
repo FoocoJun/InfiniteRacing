@@ -7,8 +7,14 @@ public class BackgroundManager
 {
     List<GameObject> _backgrounds = new List<GameObject>();
     GameObject BackgroundRoot;
+    
+    private float _backgroundSpeedMultiplier;
 
-    public float BackgroundSpeedMultiplier { get; set; } = 1.0f;
+    public float BackgroundSpeedMultiplier
+    {
+        get => _backgroundSpeedMultiplier;
+        set => _backgroundSpeedMultiplier = Mathf.Clamp(value, 0, 5);
+    }
 
     public void InitBackgrounds()
     {

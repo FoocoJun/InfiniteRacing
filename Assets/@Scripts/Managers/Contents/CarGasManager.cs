@@ -1,22 +1,18 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using static Define;
 
 public class CarGasManager
 {
     List<GameObject> _carGasList = new List<GameObject>();
-    GameObject CarGasRoot;
     
     public void InitCarGas()
     {
-        if (CarGasRoot == null)
-        {
-            CarGasRoot = new GameObject("@CarGasRoot");
-        }
-        
+       
         for (int i = 0; i < 10; i++)
         {
-            var carGas = Managers.Resource.Instantiate("CarGas", CarGasRoot.transform, true);
+            var carGas = Managers.Resource.Instantiate("CarGas", null, true);
             var randomPos = GetCarGasRandomPosition();
             randomPos.y = i * CarGasGapDistance;
             carGas.transform.position = randomPos;
@@ -42,12 +38,17 @@ public class CarGasManager
             var vector3 = carGas.transform.position;
             
             // 화면에서 사라지면 위로 올리기
-            if (vector3.y <= -1.5 * BackgroundHeight)
+            if (vector3.y > -1.5 * BackgroundHeight)
             {
-                var randomPos = GetCarGasRandomPosition();
-                randomPos.y += _carGasList.Count * CarGasGapDistance;
-                carGas.transform.position = randomPos;
+                continue;
             }
+
+            var randomPos = GetCarGasRandomPosition();
+            randomPos.y = vector3.y + (_carGasList.Count * CarGasGapDistance);
+            
+            Managers.Resource.Destroy(carGas);
+            var newCarGas = Managers.Resource.Instantiate("CarGas", null, true);
+            newCarGas.transform.position = randomPos;
         }
     }
 

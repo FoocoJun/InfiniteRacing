@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -79,6 +80,17 @@ public class FireTruck : InitBase
                 break;
             default:
                 break;
+        }
+    }
+
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        // TODO: 추후 CarGas로 이전 필요
+        if (other.gameObject.CompareTag("CarGas"))
+        {
+            Managers.Resource.Destroy(other.gameObject);
+
+            Managers.Game.CurrentRemainGas += 30;
         }
     }
 

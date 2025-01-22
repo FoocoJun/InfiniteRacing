@@ -17,6 +17,12 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: be400409ebdf53248949f7a0ca77f999
   m_SerializeEntries:
+  - m_GUID: 6640b6575e509824090c31a77a71f88c
+    m_Address: CarGas
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bdeed4d04d755a34fac009bad5cf654e
     m_Address: Background
     m_ReadOnly: 0
