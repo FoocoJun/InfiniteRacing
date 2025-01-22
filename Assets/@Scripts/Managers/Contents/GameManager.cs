@@ -14,7 +14,7 @@ public class GameSaveData
 
     public float CurrentRemainGas;
     
-    public Vector3 PlayerPosition;
+    public float StartPositionX;
     
     public int CurrentScore;
     
@@ -31,7 +31,7 @@ public class GameManager
     
     #region Player
     private FireTruck _player;
-    private Vector3 _startPosition;
+    private float _startPositionX;
     private float _currentRemainGas;
     private int _currentScore;
 
@@ -58,7 +58,7 @@ public class GameManager
     public FireTruck SpawnFireTruck()
     {
 	    GameObject player = Managers.Resource.Instantiate("FireTruck");
-	    player.transform.position = _startPosition;
+	    player.transform.position = new Vector3(_startPositionX, OffsetYPosition, 0);
 	    _player = player.GetOrAddComponent<FireTruck>();
 	    return _player;
     }
@@ -86,7 +86,7 @@ public class GameManager
 		// 저장된 데이터 없을 시 초기 데이터 선언 TODO: 팩토리 패턴 쓰면 어떨까
 		// player
 		{
-			_startPosition = new Vector3(0, -2, 0);
+			_startPositionX = 0;
 			_currentRemainGas = 100f;
 			_currentScore = 0;
 		}
@@ -104,7 +104,7 @@ public class GameManager
 		{
 			if (_player != null)
 			{
-				SaveData.PlayerPosition = _player.transform.position;
+				SaveData.StartPositionX = _player.transform.position.x;
 			}
 			SaveData.CurrentRemainGas = CurrentRemainGas;
 			SaveData.CurrentScore = CurrentScore;
@@ -145,7 +145,7 @@ public class GameManager
 		// 불러올 데이터 SaveData에서 추출 및 할당
 		// player
 		{
-			_startPosition = SaveData.PlayerPosition;
+			_startPositionX = SaveData.StartPositionX;
 			CurrentRemainGas = SaveData.CurrentRemainGas;
 			CurrentScore = SaveData.CurrentScore;
 		}
