@@ -63,7 +63,7 @@ public class GameManager
 	    return _player;
     }
     
-    private EMoveButtonState _moveButtonState;
+    private EMoveButtonState _moveButtonState = EMoveButtonState.None;
     public EMoveButtonState MoveButtonState
     {
 	    get { return _moveButtonState; }
