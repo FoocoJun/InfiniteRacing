@@ -21,4 +21,12 @@ public static class Define
     
     public const int BackgroundHeight = 10;
     public const int BackgroundMoveSpeed = 3;
+
+    public enum EMoveButtonState
+    {
+        LeftDown,
+        RightDown,
+        BothDown,
+        None,
+    }
 }

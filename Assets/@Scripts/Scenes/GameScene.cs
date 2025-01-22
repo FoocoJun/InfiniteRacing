@@ -17,6 +17,8 @@ public class GameScene : BaseScene
 
         Managers.Background.InitBackgrounds();
 
+        Managers.UI.ShowBaseUI<UI_SideMoveButton>();
+
         return true;
     }
     

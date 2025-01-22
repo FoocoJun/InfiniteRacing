@@ -22,6 +22,22 @@ public class GameManager
     public bool IsInitialized = false;
     #endregion
     
+    #region Player
+
+    private Define.EMoveButtonState _moveButtonState;
+    public Define.EMoveButtonState MoveButtonState
+    {
+	    get { return _moveButtonState; }
+	    set
+	    {
+		    _moveButtonState = value;
+		    Debug.Log("Changed to" + value);
+		    OnMoveButtonStateChanged?.Invoke(_moveButtonState);
+	    }
+    }
+    
+    #endregion
+    
     #region Save & Load
     private string Path { get { return Application.persistentDataPath + "/SaveData.json"; } }
     
@@ -84,5 +100,9 @@ public class GameManager
         SaveData = null;
         File.Delete(Path);
     }
+    #endregion
+    
+    #region Action
+    public event Action<Define.EMoveButtonState> OnMoveButtonStateChanged;
     #endregion
 }
