@@ -55,6 +55,8 @@ public class GameScene : BaseScene
     {
         Managers.Game.IsPlaying = false;
         StopCoroutine(playingCoroutine);
+
+        Managers.UI.GetSceneUI<UI_GameScene>().ShowRetry();
     }
     
     #region Play

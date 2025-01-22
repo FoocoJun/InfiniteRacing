@@ -17,6 +17,11 @@ public class UI_GameScene : UI_Scene
     {
         CurrentRemainGasSlider,
     }
+
+    enum GameObjects
+    {
+        RetryBackground,
+    }
     
     public override bool Init()
     {
@@ -25,12 +30,16 @@ public class UI_GameScene : UI_Scene
         
         BindTexts(typeof(Texts));
         BindSliders(typeof(Sliders));
+        BindObjects(typeof(GameObjects));
 
         Managers.Game.OnCurrentScoreChanged -= HandleOnCurrentScoreChanged;
         Managers.Game.OnCurrentScoreChanged += HandleOnCurrentScoreChanged;
 
         Managers.Game.OnCurrentRemainGasChanged -= HandleOnCurrentRemainGasSliderChanged;
         Managers.Game.OnCurrentRemainGasChanged += HandleOnCurrentRemainGasSliderChanged;
+        
+        GetObject((int)GameObjects.RetryBackground).SetActive(false);
+        GetObject((int)GameObjects.RetryBackground).BindEvent((evt) => OnClickRetry());
         
         Refresh();
         return true;
@@ -64,6 +73,18 @@ public class UI_GameScene : UI_Scene
 
             _elapsedTime = 0;
         }
+    }
+
+    public void ShowRetry()
+    {
+        GetObject((int)GameObjects.RetryBackground).SetActive(true);
+    }
+
+    void OnClickRetry()
+    {
+        GetObject((int)GameObjects.RetryBackground).SetActive(false);
+        // TODO: InitGame 하고 다시시작으로 수정하기
+        Managers.Scene.LoadScene(EScene.TitleScene);
     }
 
     void RefreshCurrentScoreValue()
