@@ -19,6 +19,8 @@ public class GameScene : BaseScene
 
         Managers.UI.ShowBaseUI<UI_SideMoveButton>();
 
+        var player = Managers.Resource.Instantiate("FireTruck");
+
         return true;
     }
     

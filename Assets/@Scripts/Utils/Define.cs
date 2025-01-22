@@ -29,4 +29,11 @@ public static class Define
         BothDown,
         None,
     }
+
+    public enum EFireTruckMoveState
+    {
+        Left,
+        Right,
+        None,
+    }
 }

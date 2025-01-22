@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 9999
   m_Sprite: {fileID: 21300000, guid: befc28b97b9527346bf39f60530a192a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -94,6 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6149025792671664615}
   - component: {fileID: 623743660468719284}
+  - component: {fileID: 8068348492240827238}
   m_Layer: 0
   m_Name: FireTruck
   m_TagString: Untagged
@@ -133,7 +134,7 @@ BoxCollider2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_LayerOverridePriority: 0
+  m_LayerOverridePriority: 9999
   m_ForceSendLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -162,3 +163,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.7, y: 3}
   m_EdgeRadius: 0.2
+--- !u!114 &8068348492240827238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8501136895645172761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 675470274fb7788478fe44d21dc0885e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
