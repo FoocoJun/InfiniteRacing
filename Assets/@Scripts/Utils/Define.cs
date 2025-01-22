@@ -22,6 +22,8 @@ public static class Define
     public static readonly int BackgroundHeight = 10;
     public static readonly int BackgroundMoveSpeed = 3;
 
+    public static readonly int CarGasGapDistance = 8;
+
     public static readonly float MaximumXPosition = 3.5f;
     public static readonly float OffsetYPosition = -2f;
 

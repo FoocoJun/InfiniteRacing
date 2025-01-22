@@ -17,6 +17,9 @@ public class GameScene : BaseScene
 
         // 배경 생성
         Managers.Background.InitBackgrounds();
+        
+        // 가스통 생성
+        Managers.CarGas.InitCarGas();
 
         // 좌우 이동 버튼 생성
         Managers.UI.ShowBaseUI<UI_SideMoveButton>();
@@ -37,6 +40,8 @@ public class GameScene : BaseScene
         }
         
         Managers.Background.MoveBackgroundDown();
+        
+        Managers.CarGas.MoveCarGasDown();
     }
 
     Coroutine playingCoroutine;
