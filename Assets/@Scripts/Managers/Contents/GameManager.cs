@@ -26,7 +26,7 @@ public class GameManager
     #region GameData
     public GameSaveData SaveData { get; set; } = new GameSaveData();
 
-    public bool IsInitialized = false;
+    public bool IsPlaying = false;
     #endregion
     
     #region Player
@@ -38,7 +38,7 @@ public class GameManager
     public float CurrentRemainGas
     {
 	    get => _currentRemainGas;
-	    private set
+	    set
 	    {
 			_currentRemainGas = value;
 		    OnCurrentRemainGasChanged?.Invoke();

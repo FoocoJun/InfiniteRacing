@@ -24,13 +24,57 @@ public class GameScene : BaseScene
         // 플레이어 트럭 생성
         var player = Managers.Game.SpawnFireTruck();
 
+        StartGame();
+
         return true;
     }
     
     void Update()
     {
+        if (!Managers.Game.IsPlaying)
+        {
+            return;
+        }
+        
         Managers.Background.MoveBackgroundDown();
     }
+
+    Coroutine playingCoroutine;
+    void StartGame()
+    {
+        Managers.Game.IsPlaying = true;
+        playingCoroutine = StartCoroutine(PlayGame());
+    }
+
+    void StopGame()
+    {
+        Managers.Game.IsPlaying = false;
+        StopCoroutine(playingCoroutine);
+    }
+    
+    #region Play
+    IEnumerator PlayGame()
+    {
+        while (Managers.Game.CurrentRemainGas > 0)
+        {
+            yield return new WaitForSeconds(1f);
+            
+            // 가스 감소
+            Managers.Game.CurrentRemainGas -= 10f;
+            
+            // 점수 증가
+            Managers.Game.CurrentScore += (int)(10 * Managers.Background.BackgroundSpeedMultiplier);
+            
+            // 속도 증가
+            Managers.Background.BackgroundSpeedMultiplier *= 1.3f;
+
+            if (Managers.Game.CurrentRemainGas <= 0)
+            {
+                StopGame();
+            }
+        }
+    }
+    #endregion
 
     public override void Clear()
     {

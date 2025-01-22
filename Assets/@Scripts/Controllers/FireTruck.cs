@@ -9,7 +9,7 @@ public class FireTruck : InitBase
     EFireTruckMoveState _moveState = EFireTruckMoveState.None;
 
     Coroutine _moveCoroutine;
-    private readonly float _moveSpeed = 3f;
+    private readonly float _moveSpeed = 5f;
     
     public EFireTruckMoveState MoveState
     {
@@ -44,7 +44,7 @@ public class FireTruck : InitBase
 
     private IEnumerator Move()
     {
-        while (true) {
+        while (Managers.Game.IsPlaying) {
             if (MoveState == EFireTruckMoveState.Left)
             {
                 var vector3 = transform.position;
