@@ -12,13 +12,16 @@ public class GameScene : BaseScene
 
         SceneType = EScene.GameScene;
         
-        // 이하 씬이 시작 할 때 원하는 셋팅
+        // 씬 UI 생성
         UI_GameScene sceneUI = Managers.UI.ShowSceneUI<UI_GameScene>();
 
+        // 배경 생성
         Managers.Background.InitBackgrounds();
 
+        // 좌우 이동 버튼 생성
         Managers.UI.ShowBaseUI<UI_SideMoveButton>();
 
+        // 플레이어 트럭 생성
         var player = Managers.Resource.Instantiate("FireTruck");
 
         return true;
