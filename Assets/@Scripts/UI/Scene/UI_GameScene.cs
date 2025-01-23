@@ -50,7 +50,7 @@ public class UI_GameScene : UI_Scene
         RefreshCurrentFPSText();
     }
 
-    private void Refresh()
+    public void Refresh()
     {
         RefreshCurrentScoreValue();
         RefreshCurrentRemainGasSlider();
@@ -83,11 +83,7 @@ public class UI_GameScene : UI_Scene
     void OnClickRetry()
     {
         GetObject((int)GameObjects.RetryBackground).SetActive(false);
-        // TODO: InitGame 하고 다시시작으로 수정하기
-        // TODO: 이부분 게임 매니저로 이관하기
-        Managers.Game.LoadGame();
-        Refresh();
-        Managers.Scene.CurrentScene.GetComponent<GameScene>().StartGame();
+        Managers.Scene.CurrentScene.GetComponent<GameScene>().RetryGame();
     }
 
     void RefreshCurrentScoreValue()

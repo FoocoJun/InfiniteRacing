@@ -5,6 +5,8 @@ using static Define;
 
 public class GameScene : BaseScene
 {
+    private UI_GameScene sceneUI;
+    
     public override bool Init()
     {
         if (base.Init() == false)
@@ -13,7 +15,7 @@ public class GameScene : BaseScene
         SceneType = EScene.GameScene;
         
         // 씬 UI 생성
-        UI_GameScene sceneUI = Managers.UI.ShowSceneUI<UI_GameScene>();
+        sceneUI = Managers.UI.ShowSceneUI<UI_GameScene>();
 
         // 배경 생성
         Managers.Background.InitBackgrounds();
@@ -43,10 +45,11 @@ public class GameScene : BaseScene
         
         Managers.CarGas.MoveCarGasDown();
     }
-
+    
+    #region Play
     Coroutine playingCoroutine;
 
-    public void StartGame()
+    void StartGame()
     {
         Managers.Game.IsPlaying = true;
         playingCoroutine = StartCoroutine(PlayGame());
@@ -60,7 +63,6 @@ public class GameScene : BaseScene
         Managers.UI.GetSceneUI<UI_GameScene>().ShowRetry();
     }
     
-    #region Play
     IEnumerator PlayGame()
     {
         while (Managers.Game.CurrentRemainGas > 0)
@@ -81,6 +83,13 @@ public class GameScene : BaseScene
                 StopGame();
             }
         }
+    }
+
+    public void RetryGame()
+    {
+        Managers.Game.LoadGame();
+        sceneUI.Refresh();
+        Managers.Scene.CurrentScene.GetComponent<GameScene>().StartGame();
     }
     #endregion
 
